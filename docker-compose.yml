@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  react-app:
+    image: node:18-alpine
+    ports:
+      - "3000:3000"
+    command: >
+      sh -c "
+        apk add --no-cache git &&
+        git clone https://github.com/Ryvexam/qroissantage.git app &&
+        cd app &&
+        npm install &&
+        npm run build &&
+        npm install -g serve &&
+        serve -s build -l 3000"
